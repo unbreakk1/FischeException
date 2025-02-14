@@ -1,16 +1,19 @@
 import java.util.List;
 import java.util.UUID;
 
-public class StudentService {
+public class StudentService
+{
 
     private final StudentRepo repo = new StudentRepo();
 
-    public Student addNewStudent(Student newStudent) {
+    public Student addNewStudent(Student newStudent)
+    {
         Student studentToSave = newStudent.withId(UUID.randomUUID().toString());
         return repo.save(studentToSave);
     }
 
-    public List<Student> getAllStudents(){
+    public List<Student> getAllStudents()
+    {
         return repo.getAllStudents();
     }
 }
