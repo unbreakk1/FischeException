@@ -9,6 +9,7 @@ import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class GuestListTest
 {
@@ -73,4 +74,24 @@ public class GuestListTest
         assertEquals(fileGuests, guests, "The guests read from the file do not match the expected values.");
     }
 
+    @Test
+    public void shouldThrowExceptionForNonExistentFile()
+    {
+            if (Files.exists(filePath))
+            {
+                try
+                {
+                    Files.delete(filePath);
+                }
+                catch (Exception e)
+                {
+                    throw new RuntimeException("Failed to clean up test environment", e);
+                }
+            }
+
+            assertThrows(RuntimeException.class, () ->
+            {
+                new GuestList();
+            }, "Expected a RuntimeException when trying to read a file that does not exist.");
+    }
 }

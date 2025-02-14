@@ -16,9 +16,13 @@ public class GuestList
         try
         {
             if (Files.exists(FILE_PATH))
+            {
                 guests = Files.readAllLines(FILE_PATH);
-            else
-                guests = Collections.emptyList();
+            } else
+            {
+                throw new RuntimeException("File does not exist: " + FILE_PATH.toAbsolutePath());
+            }
+
         }
         catch (IOException e)
         {
