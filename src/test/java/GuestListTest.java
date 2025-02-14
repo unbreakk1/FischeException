@@ -60,4 +60,17 @@ public class GuestListTest
         assertEquals(guests, fileContent, "The content of guests.txt does not match the list of guests.");
     }
 
+    @Test
+    public void shouldReadFromFileSystem() throws IOException
+    {
+        List<String> fileGuests = List.of("Stephan", "Max");
+        Files.write(filePath, fileGuests);
+
+        GuestList guestList = new GuestList();
+
+        List<String> guests = guestList.getGuests();
+
+        assertEquals(fileGuests, guests, "The guests read from the file do not match the expected values.");
+    }
+
 }
