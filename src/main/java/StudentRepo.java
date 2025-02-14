@@ -2,7 +2,6 @@ import java.util.*;
 
 public class StudentRepo
 {
-
     private final Map<String, Student> students = new HashMap<>();
 
     public List<Student> getAllStudents()
@@ -22,10 +21,11 @@ public class StudentRepo
     }
 
     public Student findById(String id)
-    { // Updated to throw exception
+    {
         return Optional.ofNullable(students.get(id))
                 .orElseThrow(() -> new StudentNotFoundException("Student with ID " + id + " not found"));
 
 
     }
+
 }
